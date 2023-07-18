@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption</title>
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="encryption.js"></script>
+</head>
+<body>
+    <div id="encryption">
+        <h2>Encryption</h2>
+        <form id="encryptionForm">
+            <label for="data">Data to Encrypt:</label><br>
+            <textarea id="data" name="data" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Encrypt Data">
+        </form>
+        <div id="encryptedData">
+            <h3>Encrypted Data:</h3>
+            <p id="encryptedOutput"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('encryptionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var data = document.getElementById('data').value;
+            encryptData(data);
+        });
+    </script>
+</body>
+</html>

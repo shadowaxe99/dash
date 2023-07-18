@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Integration</title>
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.esm.min.js"></script>
+</head>
+<body>
+    <div id="nft">
+        <h1>NFT Integration</h1>
+        <div id="nft-display">
+            <!-- NFTs will be dynamically loaded here -->
+        </div>
+        <button onclick="tradeNFT()">Trade NFT</button>
+    </div>
+
+    <script>
+        let nft;
+
+        // Fetch NFT data from backend
+        fetch('/backend/nft_integration.py')
+            .then(response => response.json())
+            .then(data => {
+                nft = data;
+                displayNFTs();
+            });
+
+        function displayNFTs() {
+            const nftDisplay = document.getElementById('nft-display');
+            nftDisplay.innerHTML = '';
+
+            nft.forEach(nftItem => {
+                const nftElement = document.createElement('div');
+                nftElement.innerHTML = `
+                    <h2>${nftItem.name}</h2>
+                    <p>${nftItem.description}</p>
+                    <img src="${nftItem.image}" alt="${nftItem.name}">
+                `;
+                nftDisplay.appendChild(nftElement);
+            });
+        }
+
+        function tradeNFT() {
+            // Logic to trade NFT goes here
+        }
+    </script>
+</body>
+</html>

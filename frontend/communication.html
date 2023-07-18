@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication</title>
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div id="communication">
+        <h2>Real-Time Communication</h2>
+        <div id="chat-container">
+            <!-- Chat messages will be appended here -->
+        </div>
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        var socket = io.connect('http://localhost:5000');
+        var chatInput = document.getElementById('chat-input');
+        var chatContainer = document.getElementById('chat-container');
+        var sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', function() {
+            socket.emit('newMessage', {user: user, message: chatInput.value});
+            chatInput.value = '';
+        });
+
+        socket.on('newMessage', function(data) {
+            var messageElement = document.createElement('p');
+            messageElement.textContent = data.user + ': ' + data.message;
+            chatContainer.appendChild(messageElement);
+        });
+    </script>
+</body>
+</html>
