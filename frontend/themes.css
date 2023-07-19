@@ -1,0 +1,29 @@
+/* Default Theme */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Light Blue Theme */
+body.light-blue-theme {
+    background-color: #add8e6;
+    color: #000000;
+}
+
+/* Pink Theme */
+body.pink-theme {
+    background-color: #ffc0cb;
+    color: #000000;
+}
+
+/* Green Theme */
+body.green-theme {
+    background-color: #98fb98;
+    color: #000000;
+}

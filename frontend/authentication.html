@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication</title>
+    <link rel="stylesheet" type="text/css" href="themes.css">
+    <script src="responsive.css"></script>
+</head>
+<body>
+    <div id="authentication">
+        <h2>Two-Factor Authentication</h2>
+        <form id="authForm" onsubmit="authenticateUser()">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <label for="2fa">Two-Factor Authentication Code:</label><br>
+            <input type="text" id="2fa" name="2fa"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        function authenticateUser() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var twoFactorCode = document.getElementById('2fa').value;
+
+            // Send data to backend for authentication
+            fetch('/backend/security.py', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    twoFactorCode: twoFactorCode
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/frontend/dashboard.html';
+                } else {
+                    alert('Authentication failed. Please try again.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            return false; // Prevent form from submitting normally
+        }
+    </script>
+</body>
+</html>

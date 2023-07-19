@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Management</title>
+    <link rel="stylesheet" href="themes.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="agent_management.js"></script>
+</head>
+<body>
+    <div id="agent-management">
+        <h1>Agent Management</h1>
+        <div id="agent-list">
+            <!-- Dynamically populated list of agents -->
+        </div>
+        <div id="agent-details">
+            <!-- Dynamically populated agent details -->
+        </div>
+        <div id="task-assignment">
+            <h2>Assign Task</h2>
+            <form id="task-form" onsubmit="manageAgent()">
+                <label for="task">Task:</label><br>
+                <input type="text" id="task" name="task"><br>
+                <label for="agent">Agent:</label><br>
+                <select id="agent" name="agent">
+                    <!-- Dynamically populated list of agents -->
+                </select><br>
+                <input type="submit" value="Assign Task">
+            </form>
+        </div>
+        <div id="task-progress">
+            <!-- Dynamically populated task progress -->
+        </div>
+        <div id="feedback">
+            <h2>Provide Feedback</h2>
+            <form id="feedback-form" onsubmit="manageAgent()">
+                <label for="feedback">Feedback:</label><br>
+                <textarea id="feedback" name="feedback"></textarea><br>
+                <label for="agent">Agent:</label><br>
+                <select id="agent" name="agent">
+                    <!-- Dynamically populated list of agents -->
+                </select><br>
+                <input type="submit" value="Submit Feedback">
+            </form>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            manageAgent();
+        }
+    </script>
+</body>
+</html>
